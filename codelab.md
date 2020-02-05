@@ -7,7 +7,7 @@ status: Published
 feedback link: A link where users can go to provide feedback (Maybe the git repo)
 analytics account: Google Analytics ID
 
-# Migrate to Room database
+# Migrate to Oren's Room database
 
 ## Section 1
 Duration: 0:10:00
