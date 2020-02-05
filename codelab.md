@@ -1,6 +1,6 @@
 author: Author Name
 summary: Summary of your codelab that is human readable
-id: codelab
+id: docs
 categories: codelab,markdown
 environments: Web
 status: Published

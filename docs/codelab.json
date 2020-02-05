@@ -1,0 +1,26 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-02-05T16:14:10+02:00",
+  "id": "docs",
+  "duration": 15,
+  "title": "Migrate to Room database",
+  "summary": "Summary of your codelab that is human readable",
+  "source": "codelab.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "codelab",
+    "markdown"
+  ],
+  "tags": [
+    "web"
+  ],
+  "feedback": "A link where users can go to provide feedback (Maybe the git repo)",
+  "ga": "Google Analytics ID",
+  "url": "docs"
+}
