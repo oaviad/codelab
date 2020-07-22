@@ -38,9 +38,10 @@ The main components of Espresso:
 
 In this tutorial you will modify the [EspressoClub](https://github.com/oaviad/espressoClub) project. You will setup Espresso in the project for testing and then you will test the app's functionality.
 
-See figures below.
+See figures below. 
 
-![tomtom_portal](assets/login_activity.png)
+![tomtom_portal](assets/login_activity.png) 
+![tomtom_portal](assets/main_activity.png)
 
 ## Espresso Setup Instructions
 
