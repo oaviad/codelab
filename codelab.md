@@ -36,12 +36,17 @@ The main components of Espresso:
 
 ## App Overview
 
-In this tutorial you will modify the [EspressoClub](https://github.com/oaviad/espressoClub) project. You will setup Espresso in the project for testing and then you will test the app's functionality.
+In this tutorial you will modify the [EspressoClub](https://github.com/oaviad/espressoClub) project. 
+You will setup Espresso in the project for testing and then you will test app's functionality.
+
+In order to login, user has to enter valid credentials in the login screen (LoginActivity) : valid email and valid password (>5 characters).
+After user has logged in, main screen will be launched (MainActivity).
 
 See figures below. 
 
-![tomtom_portal](assets/login_activity.png) 
-![tomtom_portal](assets/main_activity.png)
+![](assets/login_activity.png) 
+
+![](assets/main_activity.png)
 
 ## Espresso Setup Instructions
 
