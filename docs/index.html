@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title>Room database</title>
+  <title>How to Write Automation Tests with Espresso</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
@@ -23,107 +23,109 @@
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
   <google-codelab codelab-gaid="Google Analytics ID"
                   id="docs"
-                  title="Room database"
+                  title="How to Write Automation Tests with Espresso"
                   environment="web"
                   feedback-link="A link where users can go to provide feedback (Maybe the git repo)">
     
-      <google-codelab-step label="Introduction" duration="10">
-        <p>This tutorial shows you how to create custom vector map style. In this tutorial you will do the following:</p>
-<ul>
-<li>Modify a default TomTom style for vector maps with use of the Maputnik editor</li>
-<li>Apply the newly created style</li>
+      <google-codelab-step label="Overview" duration="0">
+        <p>This tutorial shows you how to write automation tests with Espresso: Android automated testing framework.</p>
+<h2 class="checklist" is-upgraded>What You&#39;ll Learn</h2>
+<ul class="checklist">
+<li>how to record Espresso Test, Save it &amp; Run.</li>
+<li>how to write Espreso Tests</li>
 </ul>
-<p>Prerequesites</p>
+<h2 is-upgraded>Prerequisites</h2>
 <ul>
-<li>API key</li>
-<li>Npm and Node.js</li>
+<li>Android Studio</li>
+<li>Android Device</li>
 </ul>
-<p>We recommend you to have npm and Node.js already installed on your machine to quickly boot up a http server.</p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Create your app" duration="10">
-        <p>This tutorial shows you how to create custom vector map style. In this tutorial you will do the following:</p>
+      <google-codelab-step label="What is the Espresso Framework?" duration="0">
+        <aside class="special"><p>The Espresso testing framework provides a set of APIs to build UI tests to test user flows within an app. These APIs let you write automated UI tests that are concise and that run reliably. Espresso is well-suited for writing white box-style automated tests, where the test code utilizes implementation code details from the app under test.</p>
+</aside>
+<p>The main components of Espresso:</p>
 <ul>
-<li>Modify a default TomTom style for vector maps with use of the Maputnik editor</li>
-<li>Apply the newly created style</li>
+<li>Espresso: Entry point to interactions with views (via onView() and onData()). Also exposes APIs that are not necessarily tied to any view, such as pressBack().</li>
+<li>ViewMatchers:  allows you to find a view in the current view hierarchy.</li>
+<li>ViewActions: allows you to perform actions on the views.</li>
+<li>ViewAssertions: allows you to assert the view state.</li>
 </ul>
-<p>Prerequesites</p>
-<ul>
-<li>API key</li>
-<li>Npm and Node.js</li>
-</ul>
-<p>We recommend you to have npm and Node.js already installed on your machine to quickly boot up a http server.</p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Update Gradle files" duration="10">
-        <p>This tutorial shows you how to create custom vector map style. In this tutorial you will do the following:</p>
+      <google-codelab-step label="App Overview" duration="0">
+        <p>In this tutorial you will modify the <a href="https://github.com/oaviad/espressoClub" target="_blank">EspressoClub</a> project. You will set up Espresso in the project for testing and then you will test the app&#39;s functionality.</p>
+<p>See figures below.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Espresso Setup Instructions" duration="0">
+        <h2 is-upgraded>Add Espresso dependencies</h2>
+<p>In your app&#39;s top-level build.gradle file, you need to specify these libraries as dependencies:</p>
+<pre><code>dependencies {
+    androidTestImplementation &#39;androidx.test:core-ktx:1.2.0&#39;
+    androidTestImplementation &#39;androidx.test.ext:junit-ktx:1.1.1&#39;
+    androidTestImplementation &#39;androidx.test:runner:1.2.0&#39;
+    androidTestImplementation &#39;androidx.test:rules:1.2.0&#39;
+    androidTestImplementation &#39;androidx.test.espresso:espresso-core:3.2.0&#39;
+    androidTestImplementation &#39;androidx.test.espresso:espresso-intents:3.2.0&#39;
+    androidTestImplementation &#34;com.google.truth:truth:0.44&#34;
+}
+</code></pre>
+<h2 is-upgraded>Set the instrumentation runner</h2>
+<pre><code>testInstrumentationRunner &#34;androidx.test.runner.AndroidJUnitRunner&#34;
+</code></pre>
+<p>In your app&#39;s top-level build.gradle file, you need to specify these libraries as dependencies:</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Espresso Test Recorder" duration="0">
+        <aside class="special"><p>The Espresso Test Recorder tool lets you create UI tests for your app without writing test code. By recording a test scenario, you can record your interactions with a device and add assertions to verify UI elements in particular snapshots of your app. Espresso Test Recorder then takes the saved recording and automatically generates a corresponding UI test that you can run to test your app</p>
+</aside>
+<p>To start recording a test with Espresso Test Recorder:</p>
 <ul>
-<li>Modify a default TomTom style for vector maps with use of the Maputnik editor</li>
-<li>Apply the newly created style</li>
+<li>Click Run &gt; Record Espresso Test.</li>
+<li>In the Select Deployment Target window, choose the device on which you want to record the test. Click OK.</li>
+<li>Espresso Test Recorder triggers a build of your project, and the app must install and launch before Espresso Test Recorder allows you to interact with it. The Record Your Test window appears after the app launches. Interact with your device to start logging events such as &#34;tap&#34; and &#34;type&#34; actions.</li>
+<li>To save a recording, click OK.</li>
 </ul>
-<p>Prerequesites</p>
-<ul>
-<li>API key</li>
-<li>Npm and Node.js</li>
-</ul>
-<p>We recommend you to have npm and Node.js already installed on your machine to quickly boot up a http server.</p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Create an Entity" duration="10">
-        <aside class="warning"><p>This will appear in a yellow info box.</p>
-</aside>
-<aside class="special"><p>This will appear in a green info box.</p>
-</aside>
-
+      <google-codelab-step label="Task1: Record login flow" duration="0">
+        
 
       </google-codelab-step>
     
-      <google-codelab-step label="Create the DAO" duration="10">
-        <p>This tutorial shows you how to create custom vector map style. In this tutorial you will do the following:</p>
-<ul>
-<li>Modify a default TomTom style for vector maps with use of the Maputnik editor</li>
-<li>Apply the newly created style</li>
-</ul>
-<p>Prerequesites</p>
-<ul>
-<li>API key</li>
-<li>Npm and Node.js</li>
-</ul>
-<p>We recommend you to have npm and Node.js already installed on your machine to quickly boot up a http server.</p>
-
+      <google-codelab-step label="Task2: Validate user enters valid credentials" duration="0">
+        
 
       </google-codelab-step>
     
-      <google-codelab-step label="Add a Room Database" duration="10">
-        <aside class="warning"><p>This will appear in a yellow info box.</p>
-</aside>
-<aside class="special"><p>This will appear in a green info box.</p>
-</aside>
-
+      <google-codelab-step label="Task3: Validate user enters invalid credentials" duration="0">
+        
 
       </google-codelab-step>
     
-      <google-codelab-step label="Test your Database" duration="10">
-        <aside class="warning"><p>This will appear in a yellow info box.</p>
-</aside>
-<aside class="special"><p>This will appear in a green info box.</p>
-</aside>
-
+      <google-codelab-step label="Task4: Validate login button is sending the right Intent" duration="0">
+        
 
       </google-codelab-step>
     
-      <google-codelab-step label="Summary" duration="10">
-        <aside class="warning"><p>This will appear in a yellow info box.</p>
-</aside>
-<aside class="special"><p>This will appear in a green info box.</p>
-</aside>
+      <google-codelab-step label="Task5: Setup Intent before launching Activity" duration="0">
+        
 
+      </google-codelab-step>
+    
+      <google-codelab-step label="Summary" duration="0">
+        
 
       </google-codelab-step>
     

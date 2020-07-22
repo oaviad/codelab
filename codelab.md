@@ -1,5 +1,5 @@
 author: Oren Aviad
-summary: Room Database
+summary: A Deep Dive into Espresso
 id: docs
 categories: codelab,markdown
 environments: Web
@@ -7,100 +7,93 @@ status: Published
 feedback link: A link where users can go to provide feedback (Maybe the git repo)
 analytics account: Google Analytics ID
 
-# Room database
+# How to Write Automation Tests with Espresso
 
-## Introduction
-Duration: 0:10:00
+## Overview
 
-This tutorial shows you how to create custom vector map style. In this tutorial you will do the following: 
+This tutorial shows you how to write automation tests with Espresso: Android automated testing framework.
 
-* Modify a default TomTom style for vector maps with use of the Maputnik editor 
-* Apply the newly created style 
+### What You’ll Learn 
+- How to setup Espress
+- How to record Espresso Test, Save it & Run
+- How to write Espreso Tests
 
-Prerequesites
+### Prerequisites 
+* Android Studio
+* Android Device
+* Source Control Tool: GitExtensions/Sourcetree
 
-* API key
-* Npm and Node.js
-
-We recommend you to have npm and Node.js already installed on your machine to quickly boot up a http server.
-
-## Create your app
-Duration: 0:10:00
-
-This tutorial shows you how to create custom vector map style. In this tutorial you will do the following: 
-
-* Modify a default TomTom style for vector maps with use of the Maputnik editor 
-* Apply the newly created style 
-
-Prerequesites
-
-* API key
-* Npm and Node.js
-
-We recommend you to have npm and Node.js already installed on your machine to quickly boot up a http server.
-
-## Update Gradle files
-Duration: 0:10:00
-
-This tutorial shows you how to create custom vector map style. In this tutorial you will do the following: 
-
-* Modify a default TomTom style for vector maps with use of the Maputnik editor 
-* Apply the newly created style 
-
-Prerequesites
-
-* API key
-* Npm and Node.js
-
-We recommend you to have npm and Node.js already installed on your machine to quickly boot up a http server.
-
-## Create an Entity
-Duration: 0:10:00
-
-Negative
-: This will appear in a yellow info box.
+## What is the Espresso Framework?
 
 Positive
-: This will appear in a green info box.
+: The Espresso testing framework provides a set of APIs to build UI tests to test user flows within an app. These APIs let you write automated UI tests that are concise and that run reliably. Espresso is well-suited for writing white box-style automated tests, where the test code utilizes implementation code details from the app under test.
 
-## Create the DAO
-Duration: 0:10:00
+The main components of Espresso:
+* Espresso: Entry point to interactions with views (via onView() and onData()). Also exposes APIs that are not necessarily tied to any view, such as pressBack().
+* ViewMatchers:  allows you to find a view in the current view hierarchy.
+* ViewActions: allows you to perform actions on the views.
+* ViewAssertions: allows you to assert the view state.
 
-This tutorial shows you how to create custom vector map style. In this tutorial you will do the following: 
+## App Overview
 
-* Modify a default TomTom style for vector maps with use of the Maputnik editor 
-* Apply the newly created style 
+In this tutorial you will modify the [EspressoClub](https://github.com/oaviad/espressoClub) project. You will setup Espresso in the project for testing and then you will test the app's functionality.
 
-Prerequesites
+See figures below.
 
-* API key
-* Npm and Node.js
+![tomtom_portal](assets/login_activity.png)
 
-We recommend you to have npm and Node.js already installed on your machine to quickly boot up a http server.
+## Espresso Setup Instructions
 
-## Add a Room Database
-Duration: 0:10:00
+### Add Espresso dependencies
 
-Negative
-: This will appear in a yellow info box.
+In your app's top-level build.gradle file, you need to specify these libraries as dependencies:
+
+``` gradle
+
+dependencies {
+    androidTestImplementation 'androidx.test:core-ktx:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
+    androidTestImplementation "com.google.truth:truth:0.44"
+}
+```
+
+### Set the instrumentation runner
+
+``` gradle
+testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+```
+
+In your app's top-level build.gradle file, you need to specify these libraries as dependencies:
+
+## Espresso Test Recorder
 
 Positive
-: This will appear in a green info box.
+: The Espresso Test Recorder tool lets you create UI tests for your app without writing test code. By recording a test scenario, you can record your interactions with a device and add assertions to verify UI elements in particular snapshots of your app. Espresso Test Recorder then takes the saved recording and automatically generates a corresponding UI test that you 
+can run to test your app
 
-## Test your Database
-Duration: 0:10:00
+To start recording a test with Espresso Test Recorder:
 
-Negative
-: This will appear in a yellow info box.
+* Click Run > Record Espresso Test.
 
-Positive
-: This will appear in a green info box.
+* In the Select Deployment Target window, choose the device on which you want to record the test. Click OK.
+
+* Espresso Test Recorder triggers a build of your project, and the app must install and launch before Espresso Test Recorder allows you to interact with it. The Record Your Test window appears after the app launches. Interact with your device to start logging events such as "tap" and "type" actions.
+
+* To save a recording, click OK.
+
+## Task1: Record login flow
+
+## Task2: Validate user enters valid credentials
+
+## Task3: Validate user enters invalid credentials
+
+## Task4: Validate login button is sending the right Intent
+
+## Task5: Setup Intent before launching Activity
 
 ## Summary
-Duration: 0:10:00
 
-Negative
-: This will appear in a yellow info box.
-
-Positive
-: This will appear in a green info box.
