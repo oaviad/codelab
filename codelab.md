@@ -58,7 +58,7 @@ To get the sample app:
 Clone the repository from GitHub and switch to the <strong>starter</strong> branch.
 
 ``` bash
-$  git clone https://oaviad.github.io/codelab
+$  git clone https://github.com/oaviad/codelab.git
 ```
 
 ## Task 1: setup Espresso
