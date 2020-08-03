@@ -45,25 +45,6 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="App Overview" duration="0">
-        <p>In this codelab you will modify the <a href="https://github.com/oaviad/espressoClub" target="_blank">EspressoClub</a> project. You will setup Espresso in the project for testing and then you will test app&#39;s functionality.</p>
-<p>In order to login, user has to enter valid credentials in the login screen (LoginActivity) : valid email and valid password (&gt;5 characters). After user has logged in the main screen will be launched (MainActivity).</p>
-<p>See figures below.</p>
-<p class="image-container"><img src="img/700f580727ef221.png"></p>
-<p class="image-container"><img src="img/ee4898c3ad244189.png"></p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Getting Started" duration="0">
-        <p>To get the sample app:</p>
-<p>Clone the repository from GitHub and switch to the <strong>starter</strong> branch.</p>
-<pre><code>$  git clone https://oaviad.github.io/codelab
-</code></pre>
-
-
-      </google-codelab-step>
-    
       <google-codelab-step label="What is the Espresso Framework?" duration="0">
         <aside class="special"><p>The Espresso testing framework provides a set of APIs to build UI tests to test user flows within an app. These APIs let you write automated UI tests that are concise and that run reliably. Espresso is well-suited for writing white box-style automated tests, where the test code utilizes implementation code details from the app under test.</p>
 </aside>
@@ -80,7 +61,26 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="Espresso Setup Instructions" duration="0">
+      <google-codelab-step label="App Overview" duration="0">
+        <p>In this codelab you will modify the <a href="https://github.com/oaviad/espressoClub" target="_blank">EspressoClub</a> project. You will setup Espresso and test app&#39;s functionality.</p>
+<p>In order to login, user has to enter valid credentials in the login screen (LoginActivity) : valid email and valid password (&gt;5 characters). After user has logged in, the main screen will be launched (MainActivity).</p>
+<p>See figures below.</p>
+<p class="image-container"><img src="img/700f580727ef221.png"></p>
+<p class="image-container"><img src="img/ee4898c3ad244189.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Getting Started" duration="0">
+        <p>To get the sample app:</p>
+<p>Clone the repository from GitHub and switch to the <strong>starter</strong> branch.</p>
+<pre><code>$  git clone https://oaviad.github.io/codelab
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Task 1: setup Espresso" duration="0">
         <h2 is-upgraded>Add Espresso dependencies</h2>
 <p>In your app&#39;s top-level build.gradle file, you need to specify these libraries as dependencies:</p>
 <pre><code>dependencies {
@@ -96,55 +96,47 @@
 <h2 is-upgraded>Set the instrumentation runner</h2>
 <pre><code>testInstrumentationRunner &#34;androidx.test.runner.AndroidJUnitRunner&#34;
 </code></pre>
-<aside class="special"><p><strong>Note</strong>: To learn more about <strong>Espresso Setup Instructions</strong>, you can read <a href="https://developer.android.com/training/testing/espresso/setup" target="_blank">here</a>.</p>
+<aside class="special"><p><strong>Tip</strong>: To learn more about <strong>Espresso Setup Instructions</strong>, you can read <a href="https://developer.android.com/training/testing/espresso/setup" target="_blank">here</a>.</p>
 </aside>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Espresso Test Recorder" duration="0">
-        <aside class="special"><p>The Espresso Test Recorder tool lets you create UI tests for your app without writing test code. By recording a test scenario, you can record your interactions with a device and add assertions to verify UI elements in particular snapshots of your app. Espresso Test Recorder then takes the saved recording and automatically generates a corresponding UI test that you can run to test your app</p>
-</aside>
-<p>To start recording a test with Espresso Test Recorder:</p>
+      <google-codelab-step label="Task 2: record login flow" duration="0">
+        <p>To start recording a test with Espresso Test Recorder:</p>
 <ul>
 <li>Click Run &gt; Record Espresso Test.</li>
 <li>In the Select Deployment Target window, choose the device on which you want to record the test. Click OK.</li>
 <li>Espresso Test Recorder triggers a build of your project, and the app must install and launch before Espresso Test Recorder allows you to interact with it. The Record Your Test window appears after the app launches. Interact with your device to start logging events such as &#34;tap&#34; and &#34;type&#34; actions.</li>
-<li>To save a recording, click OK.</li>
+<li>To save a recording: fill in Test class name &amp; click OK.</li>
 </ul>
-<aside class="special"><p><strong>Note</strong>: To learn more about <strong>Espresso Test Recorder</strong>, you can read <a href="https://developer.android.com/studio/test/espresso-test-recorder" target="_blank">here</a>.</p>
+<aside class="special"><p><strong>Tip</strong>: To learn more about <strong>Espresso Test Recorder</strong>, you can read <a href="https://developer.android.com/studio/test/espresso-test-recorder" target="_blank">here</a>.</p>
 </aside>
+<ol type="1">
+<li>Record the login flow, make sure you add at least one Assertion.</li>
+<li>Save your recording to Kotlin class.</li>
+<li>Verify tests are working.</li>
+</ol>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Task 1: record login flow" duration="0">
-        <ul>
-<li>Record the login flow</li>
-<li>Add one assertion</li>
-<li>Save your recording to Kotlin class</li>
-<li>Verify tests are working</li>
-</ul>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Task 2: validate user enters valid credentials" duration="0">
+      <google-codelab-step label="Task 3: validate user enters valid credentials" duration="0">
         
 
       </google-codelab-step>
     
-      <google-codelab-step label="Task 3: validate user enters invalid credentials" duration="0">
+      <google-codelab-step label="Task 4: validate user enters invalid credentials" duration="0">
         
 
       </google-codelab-step>
     
-      <google-codelab-step label="Task 4: validate login Intent" duration="0">
+      <google-codelab-step label="Task 5: validate login Intent" duration="0">
         
 
       </google-codelab-step>
     
-      <google-codelab-step label="Task 5: setup Intent before launching Activity" duration="0">
+      <google-codelab-step label="Task 6: setup Intent before launching Activity" duration="0">
         
 
       </google-codelab-step>
