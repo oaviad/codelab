@@ -98,14 +98,17 @@ To start recording a test with Espresso Test Recorder:
 
 * Espresso Test Recorder triggers a build of your project, and the app must install and launch before Espresso Test Recorder allows you to interact with it. The Record Your Test window appears after the app launches. Interact with your device to start logging events such as "tap" and "type" actions.
 
-* To save a recording: fill in Test class name & click OK.
+* To save a recording: fill in <strong>Test class name</strong>, <strong>Test class language</strong> & click <strong>OK</strong>.
 
 Positive
 : <strong>Tip</strong>: To learn more about <strong>Espresso Test Recorder</strong>, you can read [here](https://developer.android.com/studio/test/espresso-test-recorder). 
 
-1. Record the login flow, make sure you add at least one Assertion.
-2. Save your recording to Kotlin class.
-3. Verify tests are working.
+1. Start recording
+2. Enter valid user credentials
+3. Click Sign In button
+4. Add one Assertion
+5. Save your recording to Kotlin class.
+6. Verify tests generated runs successfuly.
 
 
 ## Task 3: validate user enters valid credentials
