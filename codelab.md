@@ -41,7 +41,7 @@ See figures below.
 
 To get the sample app:
 
-Clone the repository from GitHub and switch to the <strong>starter</strong> branch:
+Clone the repository from GitHub and switch to the <strong>starter</strong> branch.
 
 ``` bash
 $  git clone https://oaviad.github.io/codelab
@@ -106,17 +106,21 @@ To start recording a test with Espresso Test Recorder:
 Positive
 : <strong>Note</strong>: To learn more about <strong>Espresso Test Recorder</strong>, you can read [here](https://developer.android.com/studio/test/espresso-test-recorder). 
 
-## Task1: Record login flow
-Positive
-: Record the login flow and save your recording to Kotlin class. 
+## Task 1: record login flow
 
-## Task2: Validate user enters valid credentials
+- Record the login flow
+- Add one assertion
+- Save your recording to Kotlin class
+- Verify tests are working
 
-## Task3: Validate user enters invalid credentials
 
-## Task4: Validate login button is sending the right Intent
+## Task 2: validate user enters valid credentials
 
-## Task5: Setup Intent before launching Activity
+## Task 3: validate user enters invalid credentials
+
+## Task 4: validate login Intent
+
+## Task 5: setup Intent before launching Activity
 
 ## Summary
 
