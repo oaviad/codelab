@@ -23,20 +23,6 @@ In this codelab you will learn how to write automation tests with Espresso: Andr
 * Android Device
 * Source Control Tool: GitExtensions/Sourcetree
 
-## What is the Espresso Framework?
-
-Positive
-: The Espresso testing framework provides a set of APIs to build UI tests to test user flows within an app. These APIs let you write automated UI tests that are concise and that run reliably. Espresso is well-suited for writing white box-style automated tests, where the test code utilizes implementation code details from the app under test.
-
-The main components of Espresso:
-* <strong>Espresso</strong>: Entry point to interactions with views (via onView() and onData()). Also exposes APIs that are not necessarily tied to any view, such as pressBack().
-* <strong>ViewMatchers</strong>:  allows you to find a view in the current view hierarchy.
-* <strong>ViewActions</strong>: allows you to perform actions on the views.
-* <strong>ViewAssertions</strong>: allows you to assert the view state.
-
-Positive
-: <strong>Tip</strong>: Download the [Espresso cheat sheet](https://developer.android.com/training/testing/espresso/cheat-sheet) 
-
 ## App Overview
 
 In this codelab you will modify the [EspressoClub](https://github.com/oaviad/espressoClub) project. 
@@ -103,20 +89,93 @@ To start recording a test with Espresso Test Recorder:
 Positive
 : <strong>Tip</strong>: To learn more about <strong>Espresso Test Recorder</strong>, you can read [here](https://developer.android.com/studio/test/espresso-test-recorder). 
 
-1. Start recording
-2. Enter valid user credentials
-3. Click Sign In button
-4. Add one Assertion
-5. Save your recording to Kotlin class.
-6. Verify tests generated runs successfuly.
+### Task instructions:
 
+- Start recording
+- Enter valid user credentials
+- Click Sign In button
+- Add one Assertion
+- Save your recording to Kotlin class
+- Verify tests generated, runs successfuly
 
 ## Task 3: validate user enters valid credentials
 
+The main components of Espresso are:
+* <strong>Espresso</strong>: Entry point to interactions with views (via onView() and onData()). Also exposes APIs that are not necessarily tied to any view, such as pressBack().
+* <strong>ViewMatchers</strong>:  allows you to find a view in the current view hierarchy.
+* <strong>ViewActions</strong>: allows you to perform actions on the views.
+* <strong>ViewAssertions</strong>: allows you to assert the view state.
+
+The following shows how all three expressions work together in a statement:
+
+1. Use a ViewMatcher to find a View: onView(withId(R.id.my_view))
+2. Use a ViewAction to perform an action: .perform(click())
+3. Use a ViewAssertion to check if the result of the action matches an assertion: .check(matches(isDisplayed()))
+
+``` bash
+onView(withId(R.id.my_view))
+    .perform(click())
+    .check(matches(isDisplayed()))
+```
+
+### Task instructions:
+
+- Create a new Test class
+- Add the @RunWith(AndroidJUnit4::class) annotation at the beginning of your test class definition
+- Add ActivityScenarioRule to launch the LoginActivity before the test starts and close it after the test:
+
+``` kotlin
+@get:Rule
+val rule = activityScenarioRule<LoginActivity>()
+```
+
+- Write a test that validates, when the user enters valid credentials, login button is enabled and welcome string contains the user name entered
+
+Positive
+: <strong>Tip</strong>: To learn more about <strong>Espresso Basics</strong>, you can read [here](https://developer.android.com/training/testing/espresso/basics).
+
 ## Task 4: validate user enters invalid credentials
+
+### Task instructions:
+
+- Write a test that validates, when the user enters invalid credentials, login button is disabled and error popup is displayed with the correct error message
 
 ## Task 5: validate login Intent
 
+### Task instructions:
+
+- Create a new Test class
+- Add the @RunWith(AndroidJUnit4::class) annotation at the beginning of your test class definition
+- Add IntentsTestRule to initialize Espresso-Intents before each test and release Espresso-Intents after each test run:
+
+``` kotlin
+@get:Rule
+val rule = IntentsTestRule(LoginActivity::class.java)
+```
+
+- Write a test that validates, when the user enters valid credentials and clicks the login button, a new Intent was sent with the MainActivity component and with an extra named “displayName” containing the user name entered
+
 ## Task 6: setup Intent before launching Activity
 
-## Summary
+### Task instructions:
+
+- Create a new Test class
+- Add the @RunWith(AndroidJUnit4::class) annotation at the beginning of your test class definition
+- Add ActivityScenario to launch MainActivity:
+
+``` kotlin
+lateinit var scenario: ActivityScenario<MainActivity>
+```
+- Launch the MainActivity only after you setup the Intent with a long display name.
+
+``` kotlin
+scenario = launchActivity(intent)
+```
+- Clean up in an @After annotated method
+
+## Resources
+
+- [Espresso cheat-sheet](https://developer.android.com/training/testing/espresso/cheat-sheet)
+- [Espresso Basics](https://developer.android.com/training/testing/espresso/basics)
+- [Espresso Test Recorder](https://developer.android.com/studio/test/espresso-test-recorder)
+- [A Deep Dive into Android Espresso](https://medium.com/att-israel/a-deep-dive-into-android-espresso-3feed15d204c)
