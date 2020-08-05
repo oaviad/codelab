@@ -86,9 +86,6 @@ To start recording a test with Espresso Test Recorder:
 
 * To save a recording: fill in <strong>Test class name</strong>, <strong>Test class language</strong> & click <strong>OK</strong>.
 
-Positive
-: <strong>Tip</strong>: To learn more about <strong>Espresso Test Recorder</strong>, you can read [here](https://developer.android.com/studio/test/espresso-test-recorder). 
-
 ### Task instructions:
 
 - Start recording
@@ -97,6 +94,9 @@ Positive
 - Add one Assertion
 - Save your recording to Kotlin class
 - Verify tests generated, runs successfuly
+
+Positive
+: <strong>Tip</strong>: To learn more about <strong>Espresso Test Recorder</strong>, you can read [here](https://developer.android.com/studio/test/espresso-test-recorder).
 
 ## Task 3: validate user enters valid credentials
 
