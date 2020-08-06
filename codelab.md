@@ -25,11 +25,9 @@ In this codelab you will learn how to write automation tests with Espresso: Andr
 
 ## App Overview
 
-In this codelab you will modify the [EspressoClub](https://github.com/oaviad/espressoClub) project. 
-You will setup Espresso and test app's functionality.
+In this codelab you will modify the [EspressoClub](https://github.com/oaviad/espressoClub) project. You will setup Espresso and test app's functionality.
 
-In order to login, user has to enter valid credentials in the login screen (LoginActivity) : valid email and valid password (>5 characters).
-After user has logged in, the main screen will be launched (MainActivity).
+The <strong>EspressoClub</strong> app requires user's login, user has to enter valid credentials in the login screen (LoginActivity): valid email and valid password (>5 characters). After user has logged in, the main screen will be launched (MainActivity).
 
 See figures below. 
 
@@ -112,7 +110,8 @@ The following shows how all three expressions work together in a statement:
 2. Use a ViewAction to perform an action: .perform(click())
 3. Use a ViewAssertion to check if the result of the action matches an assertion: .check(matches(isDisplayed()))
 
-``` bash
+Example:
+``` kotlin
 onView(withId(R.id.my_view))
     .perform(click())
     .check(matches(isDisplayed()))
@@ -124,15 +123,16 @@ onView(withId(R.id.my_view))
 - Add the @RunWith(AndroidJUnit4::class) annotation at the beginning of your test class definition
 - Add ActivityScenarioRule to launch the LoginActivity before the test starts and close it after the test:
 
+Example:
 ``` kotlin
 @get:Rule
-val rule = activityScenarioRule<LoginActivity>()
+val rule = activityScenarioRule<MyActivity>()
 ```
 
 - Write a test that validates, when the user enters valid credentials, login button is enabled and welcome string contains the user name entered
 
 Positive
-: <strong>Tip</strong>: To learn more about <strong>Espresso Basics</strong>, you can read [here](https://developer.android.com/training/testing/espresso/basics).
+: <strong>Tip</strong>: To see more examples, you can read [here](https://developer.android.com/training/testing/espresso/basics).
 
 ## Task 4: validate user enters invalid credentials
 
@@ -146,14 +146,23 @@ Positive
 
 - Create a new Test class
 - Add the @RunWith(AndroidJUnit4::class) annotation at the beginning of your test class definition
-- Add IntentsTestRule to initialize Espresso-Intents before each test and release Espresso-Intents after each test run:
+- Add IntentsTestRule to initialize Espresso-Intents before each test and release Espresso-Intents after each test run
 
+Example:
 ``` kotlin
 @get:Rule
-val rule = IntentsTestRule(LoginActivity::class.java)
+val rule = IntentsTestRule(MyActivity::class.java)
 ```
 
 - Write a test that validates, when the user enters valid credentials and clicks the login button, a new Intent was sent with the MainActivity component and with an extra named “displayName” containing the user name entered
+
+Example:
+``` kotlin
+// verify intent component
+Intents.intended(IntentMatchers.hasComponent(MyActivity::class.java.name))
+// verify intent extra
+Intents.intended(IntentMatchers.hasExtra(extra_name, extra_value))
+```
 
 ## Task 6: setup Intent before launching Activity
 
@@ -163,15 +172,29 @@ val rule = IntentsTestRule(LoginActivity::class.java)
 - Add the @RunWith(AndroidJUnit4::class) annotation at the beginning of your test class definition
 - Add ActivityScenario to launch MainActivity:
 
+Example:
 ``` kotlin
 lateinit var scenario: ActivityScenario<MainActivity>
 ```
 - Launch the MainActivity only after you setup the Intent with a long display name.
 
+Example:
 ``` kotlin
+// setup intent
+val intent = Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
+intent.putExtra(extra_name, extra_value)
+// launch the activity
 scenario = launchActivity(intent)
 ```
 - Clean up in an @After annotated method
+
+Example:
+``` kotlin
+@After
+fun cleanup() {
+  scenario.close()
+}
+```
 
 ## Resources
 

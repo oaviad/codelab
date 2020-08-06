@@ -47,7 +47,7 @@
     
       <google-codelab-step label="App Overview" duration="0">
         <p>In this codelab you will modify the <a href="https://github.com/oaviad/espressoClub" target="_blank">EspressoClub</a> project. You will setup Espresso and test app&#39;s functionality.</p>
-<p>In order to login, user has to enter valid credentials in the login screen (LoginActivity) : valid email and valid password (&gt;5 characters). After user has logged in, the main screen will be launched (MainActivity).</p>
+<p>The <strong>EspressoClub</strong> app requires user&#39;s login, user has to enter valid credentials in the login screen (LoginActivity): valid email and valid password (&gt;5 characters). After user has logged in, the main screen will be launched (MainActivity).</p>
 <p>See figures below.</p>
 <p class="image-container"><img src="img/700f580727ef221.png"></p>
 <p class="image-container"><img src="img/ee4898c3ad244189.png"></p>
@@ -94,8 +94,6 @@
 <li>Espresso Test Recorder triggers a build of your project, and the app must install and launch before Espresso Test Recorder allows you to interact with it. The Record Your Test window appears after the app launches. Interact with your device to start logging events such as &#34;tap&#34; and &#34;type&#34; actions.</li>
 <li>To save a recording: fill in <strong>Test class name</strong>, <strong>Test class language</strong> &amp; click <strong>OK</strong>.</li>
 </ul>
-<aside class="special"><p><strong>Tip</strong>: To learn more about <strong>Espresso Test Recorder</strong>, you can read <a href="https://developer.android.com/studio/test/espresso-test-recorder" target="_blank">here</a>.</p>
-</aside>
 <h2 is-upgraded>Task instructions:</h2>
 <ul>
 <li>Start recording</li>
@@ -105,6 +103,8 @@
 <li>Save your recording to Kotlin class</li>
 <li>Verify tests generated, runs successfuly</li>
 </ul>
+<aside class="special"><p><strong>Tip</strong>: To learn more about <strong>Espresso Test Recorder</strong>, you can read <a href="https://developer.android.com/studio/test/espresso-test-recorder" target="_blank">here</a>.</p>
+</aside>
 
 
       </google-codelab-step>
@@ -123,6 +123,7 @@
 <li>Use a ViewAction to perform an action: .perform(click())</li>
 <li>Use a ViewAssertion to check if the result of the action matches an assertion: .check(matches(isDisplayed()))</li>
 </ol>
+<p>Example:</p>
 <pre><code>onView(withId(R.id.my_view))
     .perform(click())
     .check(matches(isDisplayed()))
@@ -133,13 +134,14 @@
 <li>Add the @RunWith(AndroidJUnit4::class) annotation at the beginning of your test class definition</li>
 <li>Add ActivityScenarioRule to launch the LoginActivity before the test starts and close it after the test:</li>
 </ul>
+<p>Example:</p>
 <pre><code>@get:Rule
-val rule = activityScenarioRule&lt;LoginActivity&gt;()
+val rule = activityScenarioRule&lt;MyActivity&gt;()
 </code></pre>
 <ul>
 <li>Write a test that validates, when the user enters valid credentials, login button is enabled and welcome string contains the user name entered</li>
 </ul>
-<aside class="special"><p><strong>Tip</strong>: To learn more about <strong>Espresso Basics</strong>, you can read <a href="https://developer.android.com/training/testing/espresso/basics" target="_blank">here</a>.</p>
+<aside class="special"><p><strong>Tip</strong>: To see more examples, you can read <a href="https://developer.android.com/training/testing/espresso/basics" target="_blank">here</a>.</p>
 </aside>
 
 
@@ -159,14 +161,21 @@ val rule = activityScenarioRule&lt;LoginActivity&gt;()
 <ul>
 <li>Create a new Test class</li>
 <li>Add the @RunWith(AndroidJUnit4::class) annotation at the beginning of your test class definition</li>
-<li>Add IntentsTestRule to initialize Espresso-Intents before each test and release Espresso-Intents after each test run:</li>
+<li>Add IntentsTestRule to initialize Espresso-Intents before each test and release Espresso-Intents after each test run</li>
 </ul>
+<p>Example:</p>
 <pre><code>@get:Rule
-val rule = IntentsTestRule(LoginActivity::class.java)
+val rule = IntentsTestRule(MyActivity::class.java)
 </code></pre>
 <ul>
 <li>Write a test that validates, when the user enters valid credentials and clicks the login button, a new Intent was sent with the MainActivity component and with an extra named &#34;displayName&#34; containing the user name entered</li>
 </ul>
+<p>Example:</p>
+<pre><code>// verify intent component
+Intents.intended(IntentMatchers.hasComponent(MyActivity::class.java.name))
+// verify intent extra
+Intents.intended(IntentMatchers.hasExtra(extra_name, extra_value))
+</code></pre>
 
 
       </google-codelab-step>
@@ -178,16 +187,28 @@ val rule = IntentsTestRule(LoginActivity::class.java)
 <li>Add the @RunWith(AndroidJUnit4::class) annotation at the beginning of your test class definition</li>
 <li>Add ActivityScenario to launch MainActivity:</li>
 </ul>
+<p>Example:</p>
 <pre><code>lateinit var scenario: ActivityScenario&lt;MainActivity&gt;
 </code></pre>
 <ul>
 <li>Launch the MainActivity only after you setup the Intent with a long display name.</li>
 </ul>
-<pre><code>scenario = launchActivity(intent)
+<p>Example:</p>
+<pre><code>// setup intent
+val intent = Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
+intent.putExtra(extra_name, extra_value)
+// launch the activity
+scenario = launchActivity(intent)
 </code></pre>
 <ul>
 <li>Clean up in an @After annotated method</li>
 </ul>
+<p>Example:</p>
+<pre><code>@After
+fun cleanup() {
+  scenario.close()
+}
+</code></pre>
 
 
       </google-codelab-step>
