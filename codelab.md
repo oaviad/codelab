@@ -9,7 +9,7 @@ analytics account: Google Analytics ID
 
 # Getting Started With Android Espresso
 
-## Welcome
+## Welcome!
 
 In this codelab you will learn how to write automation tests with Espresso: Android automated testing framework.
 
