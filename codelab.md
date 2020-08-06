@@ -45,6 +45,9 @@ Clone the repository from GitHub and switch to the <strong>starter</strong> bran
 $  git clone https://github.com/oaviad/codelab.git
 ```
 
+Positive
+: <strong>Tip</strong>: Full solution is available on <strong>master</strong> branch.
+
 ## Task 1: setup Espresso
 
 ### Add Espresso dependencies
@@ -104,18 +107,11 @@ The main components of Espresso are:
 * <strong>ViewActions</strong>: allows you to perform actions on the views.
 * <strong>ViewAssertions</strong>: allows you to assert the view state.
 
-The following shows how all three expressions work together in a statement:
+The following shows how all three expressions work together:
 
 1. Use a ViewMatcher to find a View: onView(withId(R.id.my_view))
 2. Use a ViewAction to perform an action: .perform(click())
 3. Use a ViewAssertion to check if the result of the action matches an assertion: .check(matches(isDisplayed()))
-
-Example:
-``` kotlin
-onView(withId(R.id.my_view))
-    .perform(click())
-    .check(matches(isDisplayed()))
-```
 
 ### Task instructions:
 
@@ -131,6 +127,20 @@ val rule = activityScenarioRule<MyActivity>()
 
 - Write a test that validates, when the user enters valid credentials, login button is enabled and welcome string contains the user name entered
 
+Example:
+``` kotlin
+// onView statement
+onView(withId(R.id.my_view))
+    .perform(click())
+    .check(matches(isDisplayed()))
+    .check(matches(isEnabled()))
+    .check(matches(not(isEnabled())))
+// How to type text
+onView(withId(R.id.my_editTextView)).perform(typeText(text), ViewActions.closeSoftKeyboard())
+// How to check view text contains another string
+onView(withId(R.id.my_textView)).check(matches(withText(containsString(str))))
+```
+
 Positive
 : <strong>Tip</strong>: To see more examples, you can read [here](https://developer.android.com/training/testing/espresso/basics).
 
@@ -139,6 +149,14 @@ Positive
 ### Task instructions:
 
 - Write a test that validates, when the user enters invalid credentials, login button is disabled and error popup is displayed with the correct error message
+
+Example:
+``` kotlin
+// validate editText popup error text
+rule.scenario.onActivity {
+  Truth.assertThat(it.my_editText.error).isEqualTo(getString(R.string.my_str))
+}
+```
 
 ## Task 5: validate login Intent
 
@@ -158,9 +176,9 @@ val rule = IntentsTestRule(MyActivity::class.java)
 
 Example:
 ``` kotlin
-// verify intent component
+// Verify intent component
 Intents.intended(IntentMatchers.hasComponent(MyActivity::class.java.name))
-// verify intent extra
+// Verify intent extra
 Intents.intended(IntentMatchers.hasExtra(extra_name, extra_value))
 ```
 
@@ -174,16 +192,16 @@ Intents.intended(IntentMatchers.hasExtra(extra_name, extra_value))
 
 Example:
 ``` kotlin
-lateinit var scenario: ActivityScenario<MainActivity>
+lateinit var scenario: ActivityScenario<MyActivity>
 ```
 - Launch the MainActivity only after you setup the Intent with a long display name.
 
 Example:
 ``` kotlin
-// setup intent
-val intent = Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
+// Setup intent
+val intent = Intent(ApplicationProvider.getApplicationContext(), MyActivity::class.java)
 intent.putExtra(extra_name, extra_value)
-// launch the activity
+// Launch the activity
 scenario = launchActivity(intent)
 ```
 - Clean up in an @After annotated method

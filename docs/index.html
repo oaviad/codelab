@@ -60,6 +60,8 @@
 <p>Clone the repository from GitHub and switch to the <strong>starter</strong> branch.</p>
 <pre><code>$  git clone https://github.com/oaviad/codelab.git
 </code></pre>
+<aside class="special"><p><strong>Tip</strong>: Full solution is available on <strong>master</strong> branch.</p>
+</aside>
 
 
       </google-codelab-step>
@@ -117,17 +119,12 @@
 <li><strong>ViewActions</strong>: allows you to perform actions on the views.</li>
 <li><strong>ViewAssertions</strong>: allows you to assert the view state.</li>
 </ul>
-<p>The following shows how all three expressions work together in a statement:</p>
+<p>The following shows how all three expressions work together:</p>
 <ol type="1">
 <li>Use a ViewMatcher to find a View: onView(withId(R.id.my_view))</li>
 <li>Use a ViewAction to perform an action: .perform(click())</li>
 <li>Use a ViewAssertion to check if the result of the action matches an assertion: .check(matches(isDisplayed()))</li>
 </ol>
-<p>Example:</p>
-<pre><code>onView(withId(R.id.my_view))
-    .perform(click())
-    .check(matches(isDisplayed()))
-</code></pre>
 <h2 is-upgraded>Task instructions:</h2>
 <ul>
 <li>Create a new Test class</li>
@@ -141,6 +138,18 @@ val rule = activityScenarioRule&lt;MyActivity&gt;()
 <ul>
 <li>Write a test that validates, when the user enters valid credentials, login button is enabled and welcome string contains the user name entered</li>
 </ul>
+<p>Example:</p>
+<pre><code>// onView statement
+onView(withId(R.id.my_view))
+    .perform(click())
+    .check(matches(isDisplayed()))
+    .check(matches(isEnabled()))
+    .check(matches(not(isEnabled())))
+// How to type text
+onView(withId(R.id.my_editTextView)).perform(typeText(text), ViewActions.closeSoftKeyboard())
+// How to check view text contains another string
+onView(withId(R.id.my_textView)).check(matches(withText(containsString(str))))
+</code></pre>
 <aside class="special"><p><strong>Tip</strong>: To see more examples, you can read <a href="https://developer.android.com/training/testing/espresso/basics" target="_blank">here</a>.</p>
 </aside>
 
@@ -152,6 +161,12 @@ val rule = activityScenarioRule&lt;MyActivity&gt;()
 <ul>
 <li>Write a test that validates, when the user enters invalid credentials, login button is disabled and error popup is displayed with the correct error message</li>
 </ul>
+<p>Example:</p>
+<pre><code>// validate editText popup error text
+rule.scenario.onActivity {
+  Truth.assertThat(it.my_editText.error).isEqualTo(getString(R.string.my_str))
+}
+</code></pre>
 
 
       </google-codelab-step>
@@ -171,9 +186,9 @@ val rule = IntentsTestRule(MyActivity::class.java)
 <li>Write a test that validates, when the user enters valid credentials and clicks the login button, a new Intent was sent with the MainActivity component and with an extra named &#34;displayName&#34; containing the user name entered</li>
 </ul>
 <p>Example:</p>
-<pre><code>// verify intent component
+<pre><code>// Verify intent component
 Intents.intended(IntentMatchers.hasComponent(MyActivity::class.java.name))
-// verify intent extra
+// Verify intent extra
 Intents.intended(IntentMatchers.hasExtra(extra_name, extra_value))
 </code></pre>
 
@@ -188,16 +203,16 @@ Intents.intended(IntentMatchers.hasExtra(extra_name, extra_value))
 <li>Add ActivityScenario to launch MainActivity:</li>
 </ul>
 <p>Example:</p>
-<pre><code>lateinit var scenario: ActivityScenario&lt;MainActivity&gt;
+<pre><code>lateinit var scenario: ActivityScenario&lt;MyActivity&gt;
 </code></pre>
 <ul>
 <li>Launch the MainActivity only after you setup the Intent with a long display name.</li>
 </ul>
 <p>Example:</p>
-<pre><code>// setup intent
-val intent = Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
+<pre><code>// Setup intent
+val intent = Intent(ApplicationProvider.getApplicationContext(), MyActivity::class.java)
 intent.putExtra(extra_name, extra_value)
-// launch the activity
+// Launch the activity
 scenario = launchActivity(intent)
 </code></pre>
 <ul>
