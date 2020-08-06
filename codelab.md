@@ -1,5 +1,5 @@
 author: Oren Aviad
-summary: How to Write Automation Tests with Espresso
+summary: Getting Started With Android Espresso
 id: docs
 categories: codelab,markdown
 environments: Web
@@ -7,7 +7,7 @@ status: Published
 feedback link: A link where users can go to provide feedback (Maybe the git repo)
 analytics account: Google Analytics ID
 
-# How to Write Automation Tests with Espresso
+# Getting Started With Android Espresso
 
 ## Welcome
 
