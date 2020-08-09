@@ -9,7 +9,7 @@ analytics account: Google Analytics ID
 
 # Getting Started With Android Espresso
 
-## Welcome!
+## Welcome
 
 In this codelab you will learn how to write automation tests with Espresso: Android automated testing framework.
 
@@ -48,7 +48,7 @@ $  git clone https://github.com/oaviad/espressoClub.git
 Positive
 : <strong>Tip</strong>: Full solution is available on <strong>master</strong> branch.
 
-## Task 1: setup Espresso
+## Task 1: Setup Espresso
 
 ### Add Espresso dependencies
 
@@ -75,7 +75,7 @@ testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 Positive
 : <strong>Tip</strong>: To learn more about <strong>Espresso Setup Instructions</strong>, you can read [here](https://developer.android.com/training/testing/espresso/setup). 
 
-## Task 2: record login flow
+## Task 2: Record login flow
 
 To start recording a test with Espresso Test Recorder:
 
@@ -99,7 +99,7 @@ To start recording a test with Espresso Test Recorder:
 Positive
 : <strong>Tip</strong>: To learn more about <strong>Espresso Test Recorder</strong>, you can read [here](https://developer.android.com/studio/test/espresso-test-recorder).
 
-## Task 3: validate user enters valid credentials
+## Task 3: Validate user enters valid credentials
 
 The main components of Espresso are:
 * <strong>Espresso</strong>: Entry point to interactions with views (via onView() and onData()). Also exposes APIs that are not necessarily tied to any view, such as pressBack().
@@ -144,7 +144,7 @@ onView(withId(R.id.my_textView)).check(matches(withText(containsString(str))))
 Positive
 : <strong>Tip</strong>: To see more examples, you can read [here](https://developer.android.com/training/testing/espresso/basics).
 
-## Task 4: validate user enters invalid credentials
+## Task 4: Validate user enters invalid credentials
 
 ### Task instructions:
 
@@ -158,7 +158,7 @@ rule.scenario.onActivity {
 }
 ```
 
-## Task 5: validate login Intent
+## Task 5: Validate login Intent
 
 ### Task instructions:
 
@@ -182,7 +182,7 @@ Intents.intended(IntentMatchers.hasComponent(MyActivity::class.java.name))
 Intents.intended(IntentMatchers.hasExtra(extra_name, extra_value))
 ```
 
-## Task 6: setup Intent before launching Activity
+## Task 6: Setup Intent before launching Activity
 
 ### Task instructions:
 
